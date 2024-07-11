@@ -29,6 +29,9 @@
 #if defined(USE_PIPES)
 #define CIFACE_USE_PIPES
 #endif
+#if defined(HAVE_WAYLAND)
+#define CIFACE_USE_WAYLAND
+#endif
 #define CIFACE_USE_DUALSHOCKUDPCLIENT
 
 namespace ciface
@@ -78,7 +81,8 @@ public:
   ControllerInterface() : m_is_init(false) {}
   void Initialize(const WindowSystemInfo& wsi);
   // Only call from one thread at a time.
-  void ChangeWindow(void* hwnd, WindowChangeReason reason = WindowChangeReason::Other);
+  void ChangeWindow(void* hwnd, int width, int height, WindowChangeReason reason = WindowChangeReason::Other);
+  void OnWindowResized(int width, int height);
   // Can be called by any thread at any time (when initialized).
   void RefreshDevices(RefreshReason reason = RefreshReason::Other);
   void Shutdown();

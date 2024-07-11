@@ -23,11 +23,12 @@ public:
   void SetCursorLockedOnNextActivation(bool locked = true);
   void SetWaitingForMessageBox(bool waiting_for_message_box);
   void SetCursorLocked(bool locked, bool follow_aspect_ratio = true);
+  float GetDevicePixelRatio() const;
 
 signals:
   void EscapePressed();
   void Closed();
-  void HandleChanged(void* handle);
+  void HandleChanged(void* handle, int width, int height);
   void StateChanged(bool fullscreen);
   void SizeChanged(int new_width, int new_height);
   void FocusChanged(bool focus);
